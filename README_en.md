@@ -1,8 +1,7 @@
 ![Swarm Logo](assets/logo.png)
 
 # Swarm (experimental, educational)
-[English Version](README_en.md)
-[汉语版本](README.md)\
+[English Version]()
 An educational framework exploring ergonomic, lightweight multi-agent orchestration.
 
 > [!WARNING]
@@ -10,17 +9,17 @@ An educational framework exploring ergonomic, lightweight multi-agent orchestrat
 >
 > The primary goal of Swarm is to showcase the handoff & routines patterns explored in the [Orchestrating Agents: Handoffs & Routines](https://cookbook.openai.com/examples/orchestrating_agents) cookbook. It is not meant as a standalone library, and is primarily for educational purposes.
 
-## 可以使用在线和离线LLM
-1. [在线LLM例子](examples/openAI/basicExample.py)
-2. [离线LLM例子](examples/ollama/basicExample.py)
+## Both online and offline LLM
+1. [Online LLM Example](examples/openAI/basicExample.py)
+2. [Offline LLM Example](examples/ollama/basicExample.py)
 3. [openAI](https://github.com/openai/swarm)
 4. [ollama](https://github.com/davidaparicio/swarm-ollama)
 
-## 怎么安装离线Ollama
-1. [下载Ollama](https://github.com/ollama/ollama)
-2. 安装到另一个目录: `OllamaSetup.exe /DIR="D:\AI"`
-3. 改模型下载路径的环境变量: `OLLAMA_MODELS=D:\AI\download_models`
-4. 下载模型: `ollama pull llama3.2:1b`
+## How to install Ollama
+1. [Download Ollama](https://github.com/ollama/ollama)
+2. Changing Install Location: `OllamaSetup.exe /DIR="D:\AI"`
+3. Changing Model Location: `OLLAMA_MODELS=D:\AI\download_models`
+4. Download Model: `ollama pull llama3.2:1b`
 5. `ollama run llama3.2:1b`
 
 ## Setup OpenAI API Key for Company
@@ -29,7 +28,6 @@ set api_key="Your api key"
 set organization="Your org key"
 set project="Your Proj name"
 ```
-`OPENAI_API_KEY="Your api key"`
 
 ## Install
 
