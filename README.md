@@ -9,18 +9,32 @@ An educational framework exploring ergonomic, lightweight multi-agent orchestrat
 >
 > The primary goal of Swarm is to showcase the handoff & routines patterns explored in the [Orchestrating Agents: Handoffs & Routines](https://cookbook.openai.com/examples/orchestrating_agents) cookbook. It is not meant as a standalone library, and is primarily for educational purposes.
 
+## Install Ollama if need Run AI Agents Locally
+1. [Download Ollama](https://ollama.com/)
+2. Install to other folder on win: `OllamaSetup.exe /DIR="D:\AI"`
+3. Change model download path: `OLLAMA_MODELS=D:\AI\download_models`
+4. Download model: `ollama pull llama3.2:1b`
+5. Test model: `ollama run llama3.2:1b`
+
+## Setup OpenAI API Key for Company if need use OpenAI
+```commandline
+set OPENAI_API_KEY="Your api key"
+set organization="Your org key"
+set project="Your Proj name"
+```
+
 ## Install
 
 Requires Python 3.10+
 
 ```shell
-pip install git+ssh://git@github.com/openai/swarm.git
+pip install git+ssh://git@github.com/suc1/swarm.git
 ```
 
 or
 
 ```shell
-pip install git+https://github.com/openai/swarm.git
+pip install git+https://github.com/suc1/swarm.git
 ```
 
 ## Usage
@@ -28,7 +42,18 @@ pip install git+https://github.com/openai/swarm.git
 ```python
 from swarm import Swarm, Agent
 
-client = Swarm()
+onLineLLM = False
+if onLineLLM:
+    modelName = 'gpt-4o-mini'
+    client = Swarm()
+else:
+    modelName = 'llama3.2:1b'       # https://ollama.com/search?c=tools
+    from openai import OpenAI
+    clientLLM = OpenAI(
+        base_url="http://localhost:11434/v1",
+        api_key="ollama"
+    )
+    client = Swarm(client=clientLLM)
 
 def transfer_to_agent_b():
     return agent_b
@@ -42,21 +67,20 @@ agent_a = Agent(
 
 agent_b = Agent(
     name="Agent B",
-    instructions="Only speak in Haikus.",
+    instructions="Only speak in Chinese.",
 )
 
 response = client.run(
     agent=agent_a,
     messages=[{"role": "user", "content": "I want to talk to agent B."}],
+    model_override=modelName,
 )
 
 print(response.messages[-1]["content"])
 ```
 
 ```
-Hope glimmers brightly,
-New paths converge gracefully,
-What can I assist?
+你想和agent B聊天吗？
 ```
 
 ## Table of Contents
